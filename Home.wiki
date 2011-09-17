@@ -1,35 +1,93 @@
-== Welcome ==
+==Announcement==
 
-Welcome to your wiki! This is the default page we've installed for your convenience. Go ahead and edit it.
+We would like to announce the availability of Inferno for Android
+phones. Because our slogan is "If it ain't broke, break it", we
+decided to replace the Java stack on Android phones with
+Inferno. We've dubbed it the Hellaphone--it was originally Hellphone,
+to keep with the Inferno theme, but then we realized we're in Northern
+California and the change was obvious.
 
-=== Wiki features ===
+The Hellaphone runs Inferno directly on top of the basic Linux layer
+provided by Android. We do not even allow the Java system to
+start. Instead, emu draws directly to the Linux framebuffer (thanks,
+Andrey, for the initial code!) and treats the touchscreen like a
+one-button mouse. Because the Java environment doesn't start, it only
+takes about 10 seconds to go from power off to a fully-booted Inferno
+environment.
 
-This wiki uses the [[http://www.wikicreole.org/|Creole]] syntax, and is fully compatible with the 1.0 specification.
+As of today, we have Inferno running on the Nexus S and the Nook
+Color. It should also run on the Android emulator, but we haven't
+tested that in a long time. The cell radio is supported, at least on
+the Nexus S (the only actual phone we've had), so you can make phone
+calls, send texts, and use the data network.
 
-The wiki itself is actually a hg repository, which means you can clone it, edit it locally/offline, add images or any other file type, and push it back to us. It will be live immediately.
+The Inferno window manager has been re-worked with cell phone use in
+mind. Windows are automatically sized to fill the whole screen. The
+menu has been moved to the top and the menu items have been made
+significantly larger. Physical buttons on the phone are now used to do
+many common tasks:
 
-Go ahead and try:
+   (these keys are for the Nexus S, different bindings are used for
+the Nook, which has different keys available)
+   * Back: Close the current window
+   * Menu: Toggle the onscreen keyboard
+   * Home: Minimize the current window
+   * Power: Turn off the screen
+   * Power+Volume Up: Open the screen brightness widget
+   * Power+Volume Down: Turn off the phone
+   * Power+Home: Restart Inferno
 
-{{{
-$ hg clone http://bitbucket.org/floren/inferno/wiki
-}}}
+Installation is reasonably simple. You'll need the Android SDK
+(http://developer.android.com/sdk/index.html), with the platform-tools
+package installed for the adb and fastboot utilities. We also strongly
+recommend installing CyanogenMod on your phone before
+proceeding--that's what we use to test.
 
-Wiki pages are normal files, with the .wiki extension. You can edit them locally, as well as creating new ones.
+First, make absolutely sure you have the "adb" and "fastboot"
+commands in your path--see the previous paragraph regarding the
+SDK and try running "adb" to be sure. Download the tarball from
+http://bitbucket.org/floren/inferno/downloads/hellaphone.tgz and
+unpack it in your root. You should end up with a /data/inferno
+directory (we put it there because of the Inferno build
+process). Then, go to the /data/inferno/android directory and run
+the Reflash-Nexus-S.sh script (assuming you have a Nexus S. Run
+Reflash-Nook-Color.sh if you have a Nook). This will
+automatically set up the phone to boot into either Inferno or the
+regular Java environment--during bootup, the screen will go solid
+white; if you touch the screen at this point, it will boot into
+the regular Android environment, otherwise it will timeout and go
+to Inferno. However, at this point you're not yet ready to boot
+into Inferno, so reboot the phone and touch the screen to go into
+the regular Android UI. The final task is to run the command "cd
+/data/inferno; ./parallel-push.sh". Reboot, let it boot into
+Inferno, and you're ready to go.
 
-=== Syntax highlighting ===
+You can also clone the repository
+(http://bitbucket.org/floren/inferno/) and build it yourself, but this
+is a significant effort. I do not recommend it if you wish to simply
+try the system, but if you want to do development you should get the
+repository.
 
-You can also highlight snippets of text, we use the excellent [[http://www.pygments.org/|Pygments]] library.
+Disclaimer: If you break your phone, it's not our fault. Don't email
+us, don't come knocking on our door, and don't call us--oh wait, you
+won't be able to do that anyway, your phone is broken!
 
-Here's an example of some Python code:
+Credit where credit is due: Ron Minnich came up with the initial
+idea--we've been kicking the idea of a Plan 9/Inferno phone around for
+years. Our summer interns, Joel Armstrong and Joshua Landgraf, did the
+lion's share of the work of making Inferno into a usable cell phone
+OS--no small feat, considering that neither had any Limbo or Inferno
+experience before the start of the summer! They re-wrote the UI,
+puzzled out the undocumented cell radio interface, figured out audio,
+worked to make Inferno more portable across phones, and generally
+figured out how to make Inferno and the Android kernel coexist
+peacefully. Andy Jones, another intern, also did some very early work
+with Android that helped us figure out the Android init process and
+how to build for Android. I took care of getting Inferno running on
+the phone in the first place and have been adding things occasionally
+since then. We would also like to thank Andrey Mirtchovski for
+providing the OLPC framebuffer code (which ported to the Android
+phones relatively easily), and of course Charles Forsyth for keeping
+the Inferno torch lit all these years (and helping me figure out some
+puzzling problems throughout the summer)!
 
-{{{
-#!python
-
-def wiki_rocks(text):
-	formatter = lambda t: "funky"+t
-	return formatter(text)
-}}}
-
-You can check out the source of this page to see how that's done, and make sure to bookmark [[http://pygments.org/docs/lexers/|the vast library of Pygment lexers]], we accept the 'short name' or the 'mimetype' of anything in there.
-
-Have fun!
