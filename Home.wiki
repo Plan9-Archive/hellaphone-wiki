@@ -91,3 +91,28 @@ phones relatively easily), and of course Charles Forsyth for keeping
 the Inferno torch lit all these years (and helping me figure out some
 puzzling problems throughout the summer)!
 
+==Screenshots==
+
+Freshly-booted Inferno:
+
+{{screenshots/justbooted.png|Freshly booted Inferno}}
+
+The application selection menu:
+
+{{screenshots/menu.png|Menu}}
+
+The SMS application, displaying current conversations:
+
+{{screenshots/sms-convs.png|SMS conversations}}
+
+The SMS application, composing a message:
+
+{{screenshots/sms-convs.png|SMS conversations}}
+
+The dialer application:
+
+{{screenshots/dialer.png|Dialer}}
+
+The web browser (not fully ready to go yet):
+
+{{screenshots/charon.png|Charon}}
