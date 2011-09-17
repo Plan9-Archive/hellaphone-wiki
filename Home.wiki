@@ -107,7 +107,7 @@ The SMS application, displaying current conversations:
 
 The SMS application, composing a message:
 
-{{screenshots/sms-convs.png|SMS conversations}}
+{{screenshots/sms-compose.png|SMS conversations}}
 
 The dialer application:
 
