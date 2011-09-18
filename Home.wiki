@@ -1,3 +1,7 @@
+==Youtube video==
+
+A short video demonstrating a bit of what can be done with the Hellaphone: [[http://www.youtube.com/watch?v=dF_-jQc53jw|Youtube]]
+
 ==Announcement==
 
 We would like to announce the availability of Inferno for Android
