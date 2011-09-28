@@ -23,7 +23,7 @@ Change the "#if 1" to "#ifndef INFERNO".
 ## OBJTYPE = 386
 # Run makemk.sh, then put /data/inferno/Linux/386/bin at the front of your $PATH
 # Run "mk nuke && mk install"
-# Go back and set OBJTYPE = arm in mkconfig
+# Go back and set `OBJTYPE = arm` and `SYSHOST = Android` in mkconfig
 # Run "mk nuke && mk install"
 # You'll need to adb push /data/inferno to /data/inferno on the phone. This may take a while. If you're running an emulator, make sure you use the -partition-size option to get a big enough /data partition. I use -partition-size 1024, to get a gigabyte of space.
 # Run /data/inferno/Android/arm/bin/emu-g from the Android shell
