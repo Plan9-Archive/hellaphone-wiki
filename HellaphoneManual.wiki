@@ -1,0 +1,68 @@
+==Walk-through==
+
+Power on your system by holding the power button. The Nexus S should vibrate to alert you that it's turning on. The Nook Color should display a loading screen to show that it's powering up.
+
+Once inferno mobile (might I suggest a new name for our system, like blaze) has booted, you should be able to see the launcher (also know as the toolbar) at the top and the window bar at the bottom.
+
+==Launcher==
+
+Clicking on the launcher should open a menu of programs and folders (folders should have a text arrow (->) in front of their name). See "Configuring the Menu" to see how to configure the menu. You can click on the launcher button to close the menu. Opening an application will also close the menu. Opening a folder will open that folder's contents as specified in the menu configuration.
+
+==Window Bar==
+
+At the bottom of the screen is the window bar. It should contain three things: a battery indicator and two buttons, one for the log and one for the keyboard. The battery indicator should display how much of your battery charge is left via a percentage. It updates once a minute (and whenever you click it) and should be pretty accurate (although, there may be a bug where it displays "100%" when inferno loads regardless of the actual battery charge). The buttons to the right of the battery indicator represent minimized (also know as iconified) windows. Clicking one of these buttons will open up the window. Note that most applications run in full-screen mode and will cover both the toolbar and windowbar. To minimize an open window (or close it) see "Button Uses"
+
+==Button Uses==
+
+Many buttons can be used to perform actions on inferno. The Nexus S and Nook Color differ in some of the actions because the Nook Color has only 4 (versus 7) buttons. These are the universal button actions (if there are more than two buttons, try to press them in that order):
+
+* Power + volume up = open brightness widget
+* Power + volume down = power system off
+* Home (or Nook) button = minimize window
+* Power + home = reload inferno
+
+For the Nexus S:
+
+* Back = close window
+* Menu = toggle keyboard
+* Power = toggle sleep mode
+
+For the Nook Color:
+
+* Volume up + home (we may wish to change this order) = toggle keyboard
+* Volume down + home (we may wish to change this order) = close window
+* Power = toggle brightness
+
+==Configuring the Menu==
+
+This menu can be configured in /appl/wm/toolbar.b via the menu array. The launcher is configured so that each sub-array is a folder. A menu item consists of the displayed text, which comes first, followed by the command to execute. So, the entry "Files", "wm/ftree" results in a button titled "Files" that launches "wm/ftree".
+
+==Technical Features==
+
+Some nice technical features have been put in place. In the window manager, some window management tools can be used. One is the organizer function. It makes sure that the window bar, toolbar, keyboard, and buttonserver launch in that order. It allows for static z.ids (the numbers associated with each window; they are assigned as windows are launched and otherwise not reliable). Things get more tricky as windows are launched. This is where the window table comes in. It can track up to 101 windows. When toolbar launches a window, it informs the window manager of the window's command. The window table should then be updated to contain the application's command at the z.id element of the table. One can look up what application is at what z.id using the table.
+
+==Window Manager Added Functions==
+
+* Organizer - makes sure that the core system programs open their windows in the right order
+* Monitor_button - performs some of the button short cut
+* Focusnext - raises a non-minimized window (won't raise toolbar or windowbar)
+* Resizewindow - resizes a window to either full-screen (when given 1) or full-screen with room for the keyboard (when given 0)
+* Updatewindowtable - identifies a new window with a string
+* Ps - prints out windows from the window table
+
+==Wish List==
+
+These features might be nice to develop later on:
+
+* Full hardware support (connect to wifi in inferno, take pictures / video with camera, etc.) - this would be ideal but will probably take a while
+* Window switcher (similar to alt + tab on computers) - could display name of window (possibly using window table) and preview in background
+* More widgets - toggle wifi, data / cell connection / etc.
+* Bug fixes
+
+==Bugs==
+
+Yes, they exist. Here are some:
+
+* Acme refuses to minimize
+* The window table seems to have trouble with debugger due to its two windows and shell because it currently does not report what applications it launches
+* Full-screen support for all apps
