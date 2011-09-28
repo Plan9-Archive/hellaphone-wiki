@@ -1,0 +1,30 @@
+Make sure you have the Android source, have run lunch full-eng, etc, to get all the binaries into your path. You'll need to edit one file, $android_root/bionic/libc/include/stdlib.h, to get Inferno to compile properly. Go toward the end of the file and find the section below:
+{{{
+#if 1 /* MISSING FROM BIONIC - ENABLED FOR STLPort and libstdc++-v3 */
+/* make STLPort happy */
+extern int      mblen(const char *, size_t);
+extern size_t   mbstowcs(wchar_t *, const char *, size_t);
+extern int      mbtowc(wchar_t *, const char *, size_t);
+
+/* Likewise, make libstdc++-v3 happy.  */
+extern int      wctomb(char *, wchar_t);
+extern size_t   wcstombs(char *, const wchar_t *, size_t);
+#endif /* MISSING */
+}}}
+Change the "#if 1" to "#ifndef INFERNO".
+
+# Download the AGCC script from [http://jfloren.net/~john/agcc] and put it in your $PATH somewhere.
+# Create the directory /data (under the root, yes!) because this will make things easier later.
+# Download Inferno from Vita Nuova ([http://www.vitanuova.com/dist/4e/inferno-20100120.tgz]) and untar it into /data (e.g. "cd /data && tar xzvf inferno-20100120.tgz"). "cd" to the inferno directory and do "hg pull" to make sure you're up to date.
+# Download my stuff with "hg pull <nowiki>http://bitbucket.org/floren/inferno</nowiki>"
+# Edit /data/inferno/mkconfig such that:
+## ROOTDIR = /data/inferno (even if the inferno files aren't currently being stored in this directory)
+## SYSHOST = Linux
+## OBJTYPE = 386
+# Run makemk.sh, then put /data/inferno/Linux/386/bin at the front of your $PATH
+# Run "mk nuke && mk install"
+# Go back and set OBJTYPE = arm in mkconfig
+# Run "mk nuke && mk install"
+# You'll need to adb push /data/inferno to /data/inferno on the phone. This may take a while. If you're running an emulator, make sure you use the -partition-size option to get a big enough /data partition. I use -partition-size 1024, to get a gigabyte of space.
+# Run /data/inferno/Android/arm/bin/emu-g from the Android shell
+## Test the graphics by running "wm/wm" once Inferno has started and presented a prompt.
