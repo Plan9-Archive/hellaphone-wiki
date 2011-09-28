@@ -16,7 +16,7 @@ Change the "#if 1" to "#ifndef INFERNO".
 # Download the AGCC script from [http://jfloren.net/~john/agcc] and put it in your $PATH somewhere.
 # Create the directory /data (under the root, yes!) because this will make things easier later.
 # Download Inferno from Vita Nuova ([http://www.vitanuova.com/dist/4e/inferno-20100120.tgz]) and untar it into /data (e.g. "cd /data && tar xzvf inferno-20100120.tgz"). "cd" to the inferno directory and do "hg pull" to make sure you're up to date.
-# Download my stuff with "hg pull <nowiki>http://bitbucket.org/floren/inferno</nowiki>"
+# Download my stuff with "hg pull http://bitbucket.org/floren/inferno"
 # Edit /data/inferno/mkconfig such that:
 ## ROOTDIR = /data/inferno (even if the inferno files aren't currently being stored in this directory)
 ## SYSHOST = Linux
