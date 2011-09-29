@@ -123,6 +123,6 @@ The dialer application:
 
 {{screenshots/dialer.png|Dialer}}
 
-The web browser (not fully ready to go yet):
+The web browser, Charon:
 
 {{screenshots/charon.png|Charon}}
