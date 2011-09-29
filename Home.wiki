@@ -95,6 +95,12 @@ phones relatively easily), and of course Charles Forsyth for keeping
 the Inferno torch lit all these years (and helping me figure out some
 puzzling problems throughout the summer)!
 
+==More Info==
+
+[[CompilingInferno|Compiling Inferno]]
+
+[[HellaphoneManual|Hellaphone Manual]]
+
 ==Screenshots==
 
 Freshly-booted Inferno:
